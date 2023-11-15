@@ -67,7 +67,7 @@ insert into product(name,category_id,price,sale_price)values('Apple Watch s9',4,
 
 -- tạo order_detail
 insert into order_detail(orders_id,product_id,quantity,price)values(1,1,2,25000000);
-insert into order_detail(orders_id,product_id,quantity,price)values(2,2,2,25000000);
+insert into order_detail(orders_id,product_id,quantity,price)values(1,2,2,25000000);
 insert into order_detail(orders_id,product_id,quantity,price)values(3,3,2,25000000);
 insert into order_detail(orders_id,product_id,quantity,price)values(4,4,2,25000000);
 insert into order_detail(orders_id,product_id,quantity,price)values(5,5,2,25000000);
@@ -100,5 +100,62 @@ WHERE id = 1;
 delete from product 
 where id=1;
 
-select id,name,status as'trang_thai'from category;
-select id,name,(id*status) as 'linh_tinh' from category;
+-- join order
+select o.id,c.name,o.created,o.status
+from orders o
+left join customer c
+on c.id = o.customer_id;
+
+select o.id,c.name,o.created,o.status,sum(od.quantity) as 'Tổng sản phẩm', SUM(p.price * od.quantity) AS 'Tổng tiền'
+from orders o
+join customer c
+on c.id = o.customer_id
+join order_detail od
+on o.id= od.orders_id
+GROUP BY o.id,c.name,o.created,o.status;
+
+-- join đơn hàng
+select o.id,p.name,od.quantity,p.price,(p.price*od.quantity) total_price
+from order_detail od
+join orders o
+on od.orders_id = o.id
+join product p
+on od.product_id=p.id;
+
+-- join đơn hàng orders_id=1
+select o.id,p.name,od.quantity,p.price,(p.price*od.quantity) total_price
+from order_detail od
+join orders o
+on od.orders_id = o.id
+join product p
+on od.product_id=p.id where orders_id=1;
+
+
+SELECT o.id, SUM(p.price * od.quantity) AS total_order_value
+FROM order_detail od
+JOIN orders o 
+ON od.orders_id = o.id
+JOIN product p 
+ON od.product_id = p.id
+WHERE o.id = 1
+GROUP BY o.id;
+
+-- lấy tất cả bản ghi product(id,name,price,categoty_name) order by xắp xếp
+select product.id,product.name,product.price,category.name as categoty_name
+from product
+join category
+on category.id = product.category_id order by price desc;
+
+-- đếm số sản phẩm
+select count(*) from product;
+
+-- đếm tông tiền
+select sum(price) from product;
+
+-- lấy ra danh sách danh mục gồm (id,name,total_product)
+
+select c.*, count(*) as total_product
+from category as c
+join product as p
+on c.id=p.category_id
+group by c.id;
