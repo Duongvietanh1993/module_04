@@ -106,13 +106,14 @@ from orders o
 left join customer c
 on c.id = o.customer_id;
 
-select o.id,c.name,o.created,o.status,sum(od.quantity) as 'Tổng sản phẩm', SUM(p.price * od.quantity) AS 'Tổng tiền'
+select o.id,c.name,o.created,o.status,sum(od.quantity) as 'Tổng sản phẩm', SUM(od.price * od.quantity) AS 'Tổng tiền'
 from orders o
 join customer c
 on c.id = o.customer_id
 join order_detail od
 on o.id= od.orders_id
-GROUP BY o.id,c.name,o.created,o.status;
+GROUP BY o.id,c.name,o.created,o.status
+having o.status =1;
 
 -- join đơn hàng
 select o.id,p.name,od.quantity,p.price,(p.price*od.quantity) total_price
@@ -159,3 +160,17 @@ from category as c
 join product as p
 on c.id=p.category_id
 group by c.id;
+
+-- phân trang
+select * from product limit 3;
+-- hiển thị 2 sản phẩm trên 1 trang
+select * from product limit 0,3;
+select * from product limit 3,3;
+
+-- hiển thị 2 sản phẩm trên 1 trang
+   -- trang 1
+select * from product limit 2 offset 0;
+   -- trang 2
+select * from product limit 2 offset 2;
+   -- trang 3
+select * from product limit 2 offset 4;
