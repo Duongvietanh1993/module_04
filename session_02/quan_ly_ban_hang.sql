@@ -174,3 +174,5 @@ select * from product limit 2 offset 0;
 select * from product limit 2 offset 2;
    -- trang 3
 select * from product limit 2 offset 4;
+
+
