@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/crud" />
+    <file type="web" url="file://$PROJECT_DIR$/crud_session_07" />
     <file type="web" url="file://$PROJECT_DIR$/demo_sever_jsp" />
+    <file type="web" url="file://$PROJECT_DIR$/session_07" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

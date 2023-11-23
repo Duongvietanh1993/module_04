@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="crud" target="1.8" />
+      <module name="crud_session_07" target="1.8" />
       <module name="demo_sever_jsp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
