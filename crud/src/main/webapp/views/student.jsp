@@ -63,7 +63,7 @@
             <td>${s.sex?"Nam":"Nữ"}</td>
             <td>${s.classRoom}</td>
             <td>
-                <a href="student?action=edit&id=${s.studentCode}">Sửa</a>
+                <a href="customer?action=edit&id=${s.studentCode}">Sửa</a>
                 <a onclick="return confirm('muốn xóa không!')" href="student?action=delete&id=${s.studentCode}">Xóa</a>
             </td>
         </tr>
